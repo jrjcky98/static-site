@@ -1,15 +1,17 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { merge } = require("webpack-merge");
 const webpackCommon = require("./common");
 const loaders = require("./loaders");
 const TerserPlugin = require("terser-webpack-plugin");
 const copyWebpackPlugin = require("copy-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const { getPublicPathEnv, getCurrentEnvFile } = require("./env");
+const {
+  getPublicPathEnv,
+  getCurrentEnvFile,
+} = require("@epic-form/epic-dev-utils/env");
 
-const webpackProd = (env) => {
-  const currentEnvFile = getCurrentEnvFile(env);
+const webpackProd = (param) => {
+  const currentEnvFile = getCurrentEnvFile(param);
   const pathEnvFile = path.resolve(__dirname, "..", currentEnvFile);
   const publicPathURL = getPublicPathEnv(pathEnvFile);
 
@@ -94,10 +96,10 @@ const webpackProd = (env) => {
   };
 };
 
-module.exports = (env) =>
+module.exports = (param) =>
   merge(
-    webpackProd(env),
-    webpackCommon(env),
+    webpackProd(param),
+    webpackCommon(param),
     loaders.loadFiles({
       options: {
         name: "static/media/[name].[ext]",

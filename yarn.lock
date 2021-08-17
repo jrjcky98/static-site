@@ -1006,6 +1006,11 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.3.tgz#90420f9f9c6d3987f176a19a7d8e764271a2f55d"
   integrity sha512-Fxt+AfXgjMoin2maPIYzFZnQjAXjAL0PHscM5pRTtatFqB+vZxAM9tLp2Optnuw3QOQC40jTNeGYFOMvyf7v9g==
 
+"@epic-form/epic-dev-utils@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@epic-form/epic-dev-utils/-/epic-dev-utils-1.0.3.tgz#0394f8f6b0d5c12065fe24c528edee1a8d8bd5ad"
+  integrity sha512-aea4wNYc6rUEFfcLl4CjB3OHkLidlKZc1fY/fNlC7K6tQhNvv/esg4MGvdU8wkUHoRv0G8Ez/IgcCFYyCBCsPQ==
+
 "@eslint/eslintrc@^0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.4.3.tgz#9e42981ef035beb3dd49add17acb96e8ff6f394c"

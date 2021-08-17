@@ -1,36 +1,36 @@
-const path = require('path');
-const { merge } = require('webpack-merge');
-const webpackCommon = require('./common');
-const loaders = require('./loaders');
+const path = require("path");
+const { merge } = require("webpack-merge");
+const webpackCommon = require("./common");
+const loaders = require("./loaders");
 
 const webpackDev = {
-  mode: 'development',
+  mode: "development",
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, '..', 'build'),
-    publicPath: '/',
+    filename: "main.js",
+    path: path.resolve(__dirname, "..", "build"),
+    publicPath: "/",
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   devServer: {
     hot: true,
     watchContentBase: true,
     historyApiFallback: true,
-    contentBase: path.join(__dirname, '..', 'public'),
+    contentBase: path.join(__dirname, "..", "public"),
     disableHostCheck: true,
     port: 3018,
-    host: 'localhost',
+    host: "localhost",
     open: true,
   },
 };
 
-module.exports = (env) =>
+module.exports = (param) =>
   merge(
     webpackDev,
-    webpackCommon(env),
+    webpackCommon(param),
     loaders.extractCSS(),
     loaders.loadFiles({
       options: {
-        name: '[name].[ext]',
+        name: "[name].[ext]",
       },
     }),
     loaders.loadJavaScript(),

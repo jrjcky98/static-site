@@ -1,8 +1,7 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const path = require('path');
-const postcssNormalize = require('postcss-normalize');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require("path");
 
-exports.extractCSS = ({ options = {}, filename = '[name].css' } = {}) => {
+exports.extractCSS = ({ options = {}, filename = "[name].css" } = {}) => {
   return {
     module: {
       rules: [
@@ -11,28 +10,28 @@ exports.extractCSS = ({ options = {}, filename = '[name].css' } = {}) => {
           use: [
             { loader: MiniCssExtractPlugin.loader, options },
             {
-              loader: 'css-loader',
+              loader: "css-loader",
             },
             {
               // Taken from CRA Modules config
               // Options for PostCSS as we reference these options twice
               // Adds vendor prefixing based on your specified browser support in
               // package.json
-              loader: 'postcss-loader',
+              loader: "postcss-loader",
               options: {
                 postcssOptions: {
                   plugins: [
-                    'postcss-flexbugs-fixes',
+                    "postcss-flexbugs-fixes",
                     [
-                      'postcss-preset-env',
+                      "postcss-preset-env",
                       {
                         autoprefixer: {
-                          flexbox: 'no-2009',
+                          flexbox: "no-2009",
                         },
                         stage: 3,
                       },
                     ],
-                    'postcss-normalize',
+                    "postcss-normalize",
                   ],
                 },
               },
@@ -66,7 +65,7 @@ exports.loadFiles = ({ include, exclude, options } = {}) => ({
         include,
         exclude,
         use: {
-          loader: 'file-loader',
+          loader: "file-loader",
           options,
         },
       },
@@ -79,8 +78,8 @@ exports.loadJavaScript = () => ({
     rules: [
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
-        include: path.join(__dirname, '..', 'src'),
-        use: 'babel-loader',
+        include: path.join(__dirname, "..", "src"),
+        use: "babel-loader",
       },
     ],
   },
@@ -91,18 +90,18 @@ exports.loadPreESLint = () => ({
     rules: [
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
-        enforce: 'pre',
+        enforce: "pre",
         use: [
           {
             options: {
               cache: true,
-              eslintPath: require.resolve('eslint'),
+              eslintPath: require.resolve("eslint"),
               resolvePluginsRelativeTo: __dirname,
             },
-            loader: require.resolve('eslint-loader'),
+            loader: require.resolve("eslint-loader"),
           },
         ],
-        include: path.join(__dirname, '..', 'src'),
+        include: path.join(__dirname, "..", "src"),
       },
     ],
   },

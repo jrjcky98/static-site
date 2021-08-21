@@ -7,7 +7,6 @@ const { getPathConfig } = require("../getConfig");
 module.exports = (param) => {
   const currentEnvFile = getCurrentEnvFile(param);
   return {
-    entry: getPathConfig("src/index.tsx"),
     resolve: {
       extensions: [".js", ".json", ".tsx", ".ts"],
     },

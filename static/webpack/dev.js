@@ -1,9 +1,14 @@
 const { merge } = require("webpack-merge");
+const webpack = require("webpack");
 const { getPathConfig } = require("../getConfig");
 const webpackCommon = require("./common");
 const loaders = require("./loaders");
 
 const webpackDev = {
+  entry: [
+    "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true",
+    getPathConfig("src/index.tsx"),
+  ],
   mode: "development",
   output: {
     filename: "main.js",
@@ -21,6 +26,7 @@ const webpackDev = {
     host: "localhost",
     open: true,
   },
+  plugins: [new webpack.HotModuleReplacementPlugin()],
 };
 
 module.exports = (param) =>

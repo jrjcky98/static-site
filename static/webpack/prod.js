@@ -16,6 +16,7 @@ const webpackProd = (param) => {
   const publicPathURL = getPublicPathEnv(pathEnvFile);
 
   return {
+    entry: getPathConfig("src/index.tsx"),
     mode: "production",
     output: {
       filename: "static/js/[name].[contenthash].js",

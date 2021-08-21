@@ -1,21 +1,21 @@
-const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const { getCurrentEnvFile } = require("@epic-form/epic-dev-utils/env");
+const { getPathConfig } = require("../getConfig");
 
 module.exports = (param) => {
   const currentEnvFile = getCurrentEnvFile(param);
   return {
-    entry: path.resolve(__dirname, "..", "src", "index.tsx"),
+    entry: getPathConfig("src/index.tsx"),
     resolve: {
       extensions: [".js", ".json", ".tsx", ".ts"],
     },
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "..", "public", "index.html"),
-        favicon: path.resolve(__dirname, "..", "public", "favicon.ico"),
+        template: getPathConfig("public/index.html"),
+        favicon: getPathConfig("public/favicon.ico"),
         inject: true,
         minify: {
           removeComments: true,
@@ -31,7 +31,7 @@ module.exports = (param) => {
         },
       }),
       new Dotenv({
-        path: path.resolve(__dirname, "..", currentEnvFile),
+        path: getPathConfig(currentEnvFile),
         allowEmptyValues: true, // allow empty variables (e.g. `FOO=`) (treat it as empty string, rather than missing)
         systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
       }),

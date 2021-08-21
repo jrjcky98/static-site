@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const { getPathConfig } = require("../getConfig");
 
 exports.extractCSS = ({ options = {}, filename = "[name].css" } = {}) => {
   return {
@@ -78,7 +79,7 @@ exports.loadJavaScript = () => ({
     rules: [
       {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
-        include: path.join(__dirname, "..", "src"),
+        include: getPathConfig("src"),
         use: "babel-loader",
       },
     ],
@@ -101,7 +102,7 @@ exports.loadPreESLint = () => ({
             loader: require.resolve("eslint-loader"),
           },
         ],
-        include: path.join(__dirname, "..", "src"),
+        include: getPathConfig("src"),
       },
     ],
   },

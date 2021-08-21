@@ -1,4 +1,3 @@
-const path = require("path");
 const { merge } = require("webpack-merge");
 const webpackCommon = require("./common");
 const loaders = require("./loaders");
@@ -9,17 +8,18 @@ const {
   getPublicPathEnv,
   getCurrentEnvFile,
 } = require("@epic-form/epic-dev-utils/env");
+const { getPathConfig } = require("../getConfig");
 
 const webpackProd = (param) => {
   const currentEnvFile = getCurrentEnvFile(param);
-  const pathEnvFile = path.resolve(__dirname, "..", currentEnvFile);
+  const pathEnvFile = getPathConfig(currentEnvFile);
   const publicPathURL = getPublicPathEnv(pathEnvFile);
 
   return {
     mode: "production",
     output: {
       filename: "static/js/[name].[contenthash].js",
-      path: path.resolve(__dirname, "..", "build"),
+      path: getPathConfig("build"),
       publicPath: publicPathURL,
     },
     plugins: [

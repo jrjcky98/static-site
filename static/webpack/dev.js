@@ -1,5 +1,5 @@
-const path = require("path");
 const { merge } = require("webpack-merge");
+const { getPathConfig } = require("../getConfig");
 const webpackCommon = require("./common");
 const loaders = require("./loaders");
 
@@ -7,7 +7,7 @@ const webpackDev = {
   mode: "development",
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "..", "build"),
+    path: getPathConfig("build"),
     publicPath: "/",
   },
   devtool: "source-map",
@@ -15,7 +15,7 @@ const webpackDev = {
     hot: true,
     watchContentBase: true,
     historyApiFallback: true,
-    contentBase: path.join(__dirname, "..", "public"),
+    contentBase: getPathConfig("public"),
     disableHostCheck: true,
     port: 3018,
     host: "localhost",

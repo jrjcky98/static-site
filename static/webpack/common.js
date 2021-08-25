@@ -5,6 +5,7 @@ const { getCurrentEnvFile } = require("@epic-form/epic-dev-utils/env");
 const { getPathConfig } = require("../getConfig");
 
 module.exports = (param) => {
+  const { HTML_TEMPLATE } = param;
   const currentEnvFile = getCurrentEnvFile(param);
   return {
     resolve: {
@@ -13,7 +14,7 @@ module.exports = (param) => {
     plugins: [
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        template: getPathConfig("public/index.html"),
+        templateContent: HTML_TEMPLATE,
         favicon: getPathConfig("public/favicon.ico"),
         inject: true,
         minify: {

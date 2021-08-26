@@ -1,10 +1,21 @@
+require("../static/binHelper");
+
 const express = require("express");
 const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackHotMiddleware = require("webpack-hot-middleware");
-const devWebpackConfig = require("../static/webpack/dev");
+const { buildTemplate } = require("../static/buildTemplate");
+const {
+  makeWebpackConfig,
+} = require("../static/webpack/helpers/makeWebpackConfig");
 
-const compiler = webpack(devWebpackConfig({ development: true }));
+const htmlTemplate = buildTemplate();
+const wpConfig = makeWebpackConfig({
+  development: true,
+  HTML_TEMPLATE: htmlTemplate,
+});
+
+const compiler = webpack(wpConfig);
 const server = express();
 const port = 3000;
 

@@ -11,7 +11,12 @@ require("@babel/register")({
         },
       },
     ],
-    [r("@babel/preset-react")],
+    [
+      r("@babel/preset-react"),
+      {
+        runtime: "automatic",
+      },
+    ],
     [r("@babel/preset-typescript")],
   ],
   plugins: ["dynamic-import-node"],

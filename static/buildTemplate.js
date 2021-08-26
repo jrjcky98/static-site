@@ -6,6 +6,7 @@ const App = require("../src/App").default;
 const { CacheProvider } = require("@emotion/react");
 const createEmotionServer = require("@emotion/server/create-instance").default;
 const createCache = require("@emotion/cache").default;
+const { StaticRouter } = require("react-router-dom");
 
 function buildTemplate() {
   const htmlFile = fs.readFileSync("./public/index.html", "utf-8");
@@ -27,7 +28,9 @@ function buildReactDOM() {
   const { html, styles } = extractCriticalToChunks(
     ReactDOMServer.renderToString(
       <CacheProvider value={cache}>
-        <App />
+        <StaticRouter location="/">
+          <App />
+        </StaticRouter>
       </CacheProvider>
     )
   );

@@ -13,7 +13,12 @@ if (process.env.NODE_ENV === "test") {
 module.exports = {
   presets: [
     ["@babel/preset-env", babelPresetOpt],
-    ["@babel/preset-react"],
+    [
+      "@babel/preset-react",
+      {
+        runtime: "automatic",
+      },
+    ],
     ["@babel/preset-typescript"],
   ],
   plugins: [

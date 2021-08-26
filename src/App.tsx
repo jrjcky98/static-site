@@ -1,14 +1,7 @@
-import React from "react";
 import { Global, css } from "@emotion/react";
-import styled from "@emotion/styled";
-
-const AppStyled = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-weight: bold;
-`;
+import Home from "./pages/Home";
+import { Route, Switch } from "react-router-dom";
+import About from "./pages/About";
 
 function App(): JSX.Element {
   return (
@@ -21,10 +14,10 @@ function App(): JSX.Element {
           }
         `}
       />
-      <AppStyled>
-        <h1>Welcome to Epic!</h1>
-        <p>env: {process.env.SHOPEE_ENV}</p>
-      </AppStyled>
+      <Switch>
+        <Route exact path="/about" component={About} />
+        <Route exact path="/" component={Home} />
+      </Switch>
     </>
   );
 }

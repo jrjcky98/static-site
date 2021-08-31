@@ -1,7 +1,6 @@
 import { Global, css } from "@emotion/react";
-import Home from "./pages/Home";
-import { Route, Switch } from "react-router-dom";
-import About from "./pages/About";
+import { Switch } from "react-router-dom";
+import Routes from "./components/Routes";
 
 function App(): JSX.Element {
   return (
@@ -15,8 +14,7 @@ function App(): JSX.Element {
         `}
       />
       <Switch>
-        <Route exact path="/about" component={About} />
-        <Route exact path="/" component={Home} />
+        <Routes />
       </Switch>
     </>
   );

@@ -4,15 +4,13 @@ const express = require("express");
 const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackHotMiddleware = require("webpack-hot-middleware");
-const { buildTemplate } = require("../static/buildTemplate");
+const { buildTemplate } = require("../static/templateBuilder");
 const {
   makeWebpackConfig,
 } = require("../static/webpack/helpers/makeWebpackConfig");
 
-const htmlTemplate = buildTemplate();
 const wpConfig = makeWebpackConfig({
   development: true,
-  HTML_TEMPLATE: htmlTemplate,
 });
 
 const compiler = webpack(wpConfig);

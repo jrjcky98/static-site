@@ -1,5 +1,4 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require("path");
 const { getPathConfig } = require("../getConfig");
 
 exports.extractCSS = ({ options = {}, filename = "[name].css" } = {}) => {
@@ -12,28 +11,10 @@ exports.extractCSS = ({ options = {}, filename = "[name].css" } = {}) => {
             { loader: MiniCssExtractPlugin.loader, options },
             {
               loader: "css-loader",
-            },
-            {
-              // Taken from CRA Modules config
-              // Options for PostCSS as we reference these options twice
-              // Adds vendor prefixing based on your specified browser support in
-              // package.json
-              loader: "postcss-loader",
               options: {
-                postcssOptions: {
-                  plugins: [
-                    "postcss-flexbugs-fixes",
-                    [
-                      "postcss-preset-env",
-                      {
-                        autoprefixer: {
-                          flexbox: "no-2009",
-                        },
-                        stage: 3,
-                      },
-                    ],
-                    "postcss-normalize",
-                  ],
+                modules: {
+                  auto: true,
+                  localIdentName: "[name]__[local]___[hash:base64:5]",
                 },
               },
             },

@@ -19,5 +19,14 @@ require("@babel/register")({
     ],
     [r("@babel/preset-typescript")],
   ],
-  plugins: ["dynamic-import-node"],
+  plugins: [
+    [
+      "css-modules-transform",
+      {
+        extensions: [".css"],
+        generateScopedName: "[name]__[local]___[hash:base64:5]",
+      },
+    ],
+    "dynamic-import-node",
+  ],
 });

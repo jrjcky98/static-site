@@ -5,21 +5,20 @@ const {
   makeWebpackConfig,
 } = require("../static/webpack/helpers/makeWebpackConfig");
 const fs = require("fs");
-const { buildTemplate } = require("../static/buildTemplate");
+const { buildTemplate } = require("../static/templateBuilder");
 
 function compileWebpack() {
   if (fs.existsSync("build")) {
     fs.rmSync("build", { recursive: true });
   }
 
-  const htmlTemplate = buildTemplate();
   const wpConfig = makeWebpackConfig({
     production: true,
-    HTML_TEMPLATE: htmlTemplate,
   });
 
   compile([wpConfig])
     .then(() => {
+      buildTemplate();
       console.log("Success! Compiled in `build` folder");
     })
     .catch((err) => {

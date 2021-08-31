@@ -1,14 +1,16 @@
 const { merge } = require("webpack-merge");
-const webpackCommon = require("./common");
-const loaders = require("./loaders");
 const TerserPlugin = require("terser-webpack-plugin");
 const copyWebpackPlugin = require("copy-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const LoadablePlugin = require("@loadable/webpack-plugin");
 const {
   getPublicPathEnv,
   getCurrentEnvFile,
 } = require("@epic-form/epic-dev-utils/env");
+
 const { getPathConfig } = require("../getConfig");
+const webpackCommon = require("./common");
+const loaders = require("./loaders");
 
 const webpackProd = (param) => {
   const currentEnvFile = getCurrentEnvFile(param);
@@ -38,6 +40,7 @@ const webpackProd = (param) => {
           },
         ],
       }),
+      new LoadablePlugin(),
     ],
     optimization: {
       splitChunks: {

@@ -20,8 +20,6 @@ function buildTemplate() {
     .replace("%HTML_STYLES%", styleTags + constructedStyle)
     .replace("%HTML_LINK%", linkTags);
 
-  console.log("Writing HTML File..");
-
   fs.writeFileSync("build/index.html", replacedTemplate);
 }
 
@@ -53,12 +51,6 @@ function buildExtractorHTML() {
   const linkTags = extractor.getLinkTags();
   const styleTags = extractor.getStyleTags();
 
-  // console.log("HTML: ", html);
-  // console.log("SCRIPT: ", scriptTags);
-  // console.log("LINK: ", linkTags);
-  // console.log("STYLE: ", styleTags);
-  // console.log("CONST STYLE: ", constructedStyle);
-
   return {
     html,
     scriptTags,
@@ -68,6 +60,18 @@ function buildExtractorHTML() {
   };
 }
 
+function buildDevTemplate() {
+  const htmlFile = fs.readFileSync("./public/index.html", "utf-8");
+
+  const replacedTemplate = htmlFile
+    .replace("%HTML_BODY%", "")
+    .replace("%HTML_STYLES%", "")
+    .replace("%HTML_LINK%", "");
+
+  return replacedTemplate;
+}
+
 module.exports = {
   buildTemplate,
+  buildDevTemplate,
 };

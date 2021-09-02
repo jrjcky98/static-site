@@ -8,8 +8,15 @@ import { CacheProvider } from "@emotion/react";
 
 const cache = createCache({ key: "custom" });
 
+let renderMethod = ReactDOM.hydrate;
+
+if (module.hot) {
+  module.hot.accept();
+  renderMethod = ReactDOM.render;
+}
+
 loadableReady(() => {
-  ReactDOM.hydrate(
+  renderMethod(
     <StrictMode>
       <CacheProvider value={cache}>
         <BrowserRouter>
@@ -20,7 +27,3 @@ loadableReady(() => {
     document.getElementById("root")
   );
 });
-
-if (module.hot) {
-  module.hot.accept();
-}

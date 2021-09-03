@@ -6,6 +6,10 @@ const About = loadable<JSX.Element>(() => import("./pages/About"), {
   fallback: Loading(),
 });
 
+const AboutMe = loadable<JSX.Element>(() => import("./pages/AboutMe"), {
+  fallback: Loading(),
+});
+
 const routes = [
   {
     path: "/",
@@ -16,6 +20,11 @@ const routes = [
     path: "/about",
     exact: true,
     component: About,
+  },
+  {
+    path: "/about/me",
+    exact: true,
+    component: AboutMe,
   },
 ];
 

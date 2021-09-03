@@ -9,21 +9,31 @@ const createCache = require("@emotion/cache").default;
 const { StaticRouter } = require("react-router-dom");
 
 const App = require("../src/App").default;
+const { buildRoutes, baseBuildPath } = require("./routesBuilder");
 
 function buildTemplate() {
   const htmlFile = fs.readFileSync("./public/index.html", "utf-8");
+  const { routePath } = buildRoutes();
 
-  const { html, constructedStyle, styleTags, linkTags, scriptTags } =
-    buildExtractorHTML();
-  const replacedTemplate = htmlFile
-    .replace("%HTML_BODY%", html + scriptTags)
-    .replace("%HTML_STYLES%", styleTags + constructedStyle)
-    .replace("%HTML_LINK%", linkTags);
+  routePath.forEach((route) => {
+    const { html, constructedStyle, styleTags, linkTags, scriptTags } =
+      buildExtractorHTML(route);
 
-  fs.writeFileSync("build/index.html", replacedTemplate);
+    const buildHTMLPath = `${baseBuildPath}${route}/index.html`;
+
+    const replacedTemplate = htmlFile
+      .replace("%HTML_BODY%", html)
+      .replace("%HTML_SCRIPTS%", scriptTags)
+      .replace("%HTML_STYLES%", styleTags + constructedStyle)
+      .replace("%HTML_LINK%", linkTags);
+
+    fs.writeFileSync(buildHTMLPath, replacedTemplate);
+  });
+
+  // todo: minify html and optimizations
 }
 
-function buildExtractorHTML() {
+function buildExtractorHTML(currentPath = "/") {
   const webStats = path.resolve(__dirname, "../build/loadable-stats.json");
 
   const key = "custom";
@@ -34,7 +44,7 @@ function buildExtractorHTML() {
   const extractor = new ChunkExtractor({ statsFile: webStats });
   const appElement = (
     <CacheProvider value={cache}>
-      <StaticRouter location="/">
+      <StaticRouter location={currentPath}>
         <App />
       </StaticRouter>
     </CacheProvider>
@@ -65,6 +75,7 @@ function buildDevTemplate() {
 
   const replacedTemplate = htmlFile
     .replace("%HTML_BODY%", "")
+    .replace("%HTML_SCRIPTS%", "")
     .replace("%HTML_STYLES%", "")
     .replace("%HTML_LINK%", "");
 

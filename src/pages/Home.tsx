@@ -13,7 +13,7 @@ function Home() {
   return (
     <AppStyled>
       <h1>A Warm Welcome to Epic!</h1>
-      <p>env:{process.env.SHOPEE_ENV}</p>
+      <p>env:{process.env.BASE_ENV}</p>
       <Link to="/about">To About</Link>
     </AppStyled>
   );

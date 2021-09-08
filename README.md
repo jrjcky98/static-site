@@ -1,6 +1,16 @@
-# 📌 Static Site
+# 📌 Static Site JC
 
-Personal notes and documentation for frontend world and other things.
+Simple static website for React developers. Enhancing simple React apps by pre-rendering capabilities and other cool things!
+
+## Features
+
+1. React
+2. Support HTML pre-rendering for each defined routes.
+3. Critical CSS pre-rendering with @emotion/css.
+4. SPA navigation feel without full page reload with @loadable/components
+5. Build with Webpack.
+6. [WIP] SEO Support
+7. [WIP] Markdown Support (MDX)
 
 ## Development Insights
 

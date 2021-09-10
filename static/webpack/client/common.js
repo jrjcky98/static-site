@@ -1,14 +1,13 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const { getCurrentEnvFile } = require("@epic-form/epic-dev-utils/env");
-const { getPathConfig } = require("../getConfig");
+const { getPathConfig } = require("../../getConfig");
 
 module.exports = (param) => {
   const currentEnvFile = getCurrentEnvFile(param);
   return {
     resolve: {
-      extensions: [".js", ".json", ".tsx", ".ts"],
+      extensions: [".js", ".json", ".tsx", ".ts", ".md", ".mdx"],
     },
     plugins: [
       new CleanWebpackPlugin(),

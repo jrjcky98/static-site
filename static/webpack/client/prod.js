@@ -8,7 +8,7 @@ const {
   getCurrentEnvFile,
 } = require("@epic-form/epic-dev-utils/env");
 
-const { getPathConfig } = require("../getConfig");
+const { getPathConfig } = require("../../getConfig");
 const webpackCommon = require("./common");
 const loaders = require("./loaders");
 
@@ -112,6 +112,7 @@ module.exports = (param) =>
     loaders.extractCSS({
       filename: "static/css/[name].[contenthash:8].css",
     }),
+    loaders.loadMarkdown(),
     loaders.loadJavaScript(),
     loaders.loadPreESLint()
   );

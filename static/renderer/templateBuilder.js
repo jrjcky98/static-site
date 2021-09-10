@@ -1,15 +1,14 @@
-const fs = require("fs");
-const path = require("path");
-const ReactDOMServer = require("react-dom/server");
-const React = require("react");
-const { ChunkExtractor } = require("@loadable/server");
-const { CacheProvider } = require("@emotion/react");
-const createEmotionServer = require("@emotion/server/create-instance").default;
-const createCache = require("@emotion/cache").default;
-const { StaticRouter } = require("react-router-dom");
-
-const App = require("../src/App").default;
-const { buildRoutes, baseBuildPath } = require("./routesBuilder");
+import fs from "fs";
+import path from "path";
+import React from "react";
+import ReactDOMServer from "react-dom/server";
+import { ChunkExtractor } from "@loadable/server";
+import { CacheProvider } from "@emotion/react";
+import createEmotionServer from "@emotion/server/create-instance";
+import createCache from "@emotion/cache";
+import { StaticRouter } from "react-router-dom";
+import App from "../../src/App";
+import { buildRoutes, baseBuildPath } from "./routesBuilder";
 
 function buildTemplate() {
   const htmlFile = fs.readFileSync("./public/index.html", "utf-8");
@@ -34,7 +33,7 @@ function buildTemplate() {
 }
 
 function buildExtractorHTML(currentPath = "/") {
-  const webStats = path.resolve(__dirname, "../build/loadable-stats.json");
+  const webStats = path.resolve(__dirname, "../../build/loadable-stats.json");
 
   const key = "custom";
   const cache = createCache({ key });
@@ -71,7 +70,7 @@ function buildExtractorHTML(currentPath = "/") {
 }
 
 function buildDevTemplate() {
-  const htmlFile = fs.readFileSync("./public/index.html", "utf-8");
+  const htmlFile = fs.readFileSync("../../public/index.html", "utf-8");
 
   const replacedTemplate = htmlFile
     .replace("%HTML_BODY%", "")
@@ -82,7 +81,4 @@ function buildDevTemplate() {
   return replacedTemplate;
 }
 
-module.exports = {
-  buildTemplate,
-  buildDevTemplate,
-};
+export { buildTemplate, buildDevTemplate };

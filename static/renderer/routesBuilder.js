@@ -1,5 +1,5 @@
-const fs = require("fs");
-const { default: routes } = require("../src/routes");
+import fs from "fs";
+import routes from "../../src/routes";
 
 const baseBuildPath = "build";
 
@@ -20,7 +20,4 @@ function buildRoutes() {
   return { routePath };
 }
 
-module.exports = {
-  buildRoutes,
-  baseBuildPath,
-};
+export { buildRoutes, baseBuildPath };

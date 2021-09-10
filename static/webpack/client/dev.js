@@ -1,6 +1,6 @@
 const { merge } = require("webpack-merge");
 const webpack = require("webpack");
-const { getPathConfig } = require("../getConfig");
+const { getPathConfig } = require("../../getConfig");
 const webpackCommon = require("./common");
 const loaders = require("./loaders");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -62,6 +62,7 @@ module.exports = (param) =>
         name: "[name].[ext]",
       },
     }),
+    loaders.loadMarkdown(),
     loaders.loadJavaScript(),
     loaders.loadPreESLint()
   );

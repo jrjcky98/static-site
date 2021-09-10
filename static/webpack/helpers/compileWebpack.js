@@ -15,8 +15,9 @@ function compile(config) {
 
       stats.toJson("verbose");
 
-      const [prodStats] = stats.stats;
+      const [prodStats, nodeStats] = stats.stats;
       checkBuildStats("prod", prodStats);
+      checkBuildStats("node", nodeStats);
 
       function checkBuildStats(stage, stageStats) {
         const buildErrors = stageStats?.hasErrors();

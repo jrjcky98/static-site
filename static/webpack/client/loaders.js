@@ -1,5 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { getPathConfig } = require("../getConfig");
+const { getPathConfig } = require("../../getConfig");
 
 exports.extractCSS = ({ options = {}, filename = "[name].css" } = {}) => {
   return {
@@ -62,6 +62,17 @@ exports.loadJavaScript = () => ({
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         include: getPathConfig("src"),
         use: "babel-loader",
+      },
+    ],
+  },
+});
+
+exports.loadMarkdown = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.mdx$/,
+        use: ["babel-loader", "@mdx-js/loader"],
       },
     ],
   },

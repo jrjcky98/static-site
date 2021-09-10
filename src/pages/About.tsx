@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
+import Hello from "../docs/hello";
 
 const AppStyled = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ function About() {
     <AppStyled>
       <h1>This is about page</h1>
       <Link to="/">To Home</Link>
+      <Hello />
     </AppStyled>
   );
 }

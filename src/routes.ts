@@ -1,14 +1,9 @@
 import loadable from "@loadable/component";
-import Loading from "./components/Loading";
 import Home from "./pages/Home";
 
-const About = loadable<JSX.Element>(() => import("./pages/About"), {
-  fallback: Loading(),
-});
+const About = loadable<JSX.Element>(() => import("./pages/About"));
 
-const AboutMe = loadable<JSX.Element>(() => import("./pages/AboutMe"), {
-  fallback: Loading(),
-});
+const AboutMe = loadable<JSX.Element>(() => import("./pages/AboutMe"));
 
 const routes = [
   {

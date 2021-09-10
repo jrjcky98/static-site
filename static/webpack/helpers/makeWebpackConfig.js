@@ -7,15 +7,19 @@ const defaultState = {
   test: false,
   uat: false,
 
+  server: false,
   HTML_TEMPLATE: "",
 };
 
 function makeWebpackConfig(wpState = defaultState) {
   let wpConfig;
-  if (wpState.development) {
-    wpConfig = require("../dev")(wpState);
+
+  if (wpState.server) {
+    wpConfig = require("../node/server");
+  } else if (wpState.development) {
+    wpConfig = require("../client/dev")(wpState);
   } else {
-    wpConfig = require("../prod")(wpState);
+    wpConfig = require("../client/prod")(wpState);
   }
 
   return wpConfig;

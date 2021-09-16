@@ -15,6 +15,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
+    "plugin:mdx/recommended",
   ],
   plugins: ["react-hooks"],
   rules: {
@@ -30,5 +31,28 @@ module.exports = {
     react: {
       version: "detect",
     },
+    "mdx/code-blocks": true,
   },
+  overrides: [
+    {
+      files: ["*.md"],
+      rules: {
+        "prettier/prettier": [
+          2,
+          {
+            // unnecessary if you're not using `eslint-plugin-prettier`, but required if you are
+            parser: "markdown",
+          },
+        ],
+      },
+    },
+    {
+      files: ["*.mdx"],
+      extends: ["plugin:mdx/overrides"],
+    },
+    {
+      files: "**/*.{md,mdx}/**",
+      extends: "plugin:mdx/code-blocks",
+    },
+  ],
 };

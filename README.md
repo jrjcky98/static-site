@@ -10,7 +10,7 @@ Simple static website for React developers. Enhancing simple React apps by pre-r
 4. SPA navigation feel without full page reload with @loadable/components
 5. Build with Webpack.
 6. [WIP] SEO Support
-7. [WIP] Markdown Support (MDX)
+7. Markdown Support (MDX)
 
 ## Development Insights
 

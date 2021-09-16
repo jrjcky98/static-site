@@ -4,7 +4,7 @@ const express = require("express");
 const webpack = require("webpack");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackHotMiddleware = require("webpack-hot-middleware");
-const { buildDevTemplate } = require("../static/templateBuilder");
+const { buildDevTemplate } = require("../static/renderer/templateBuilder");
 const {
   makeWebpackConfig,
 } = require("../static/webpack/helpers/makeWebpackConfig");

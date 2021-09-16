@@ -50,7 +50,6 @@ function buildExtractorHTML(currentPath = "/") {
   );
 
   const jsx = extractor.collectChunks(appElement);
-
   const { styles, html } = extractCriticalToChunks(
     ReactDOMServer.renderToString(jsx)
   );
@@ -70,7 +69,7 @@ function buildExtractorHTML(currentPath = "/") {
 }
 
 function buildDevTemplate() {
-  const htmlFile = fs.readFileSync("../../public/index.html", "utf-8");
+  const htmlFile = fs.readFileSync("./public/index.html", "utf-8");
 
   const replacedTemplate = htmlFile
     .replace("%HTML_BODY%", "")

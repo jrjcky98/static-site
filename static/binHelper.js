@@ -1,7 +1,7 @@
 const r = require.resolve;
 
 require("@babel/register")({
-  extensions: [".js", ".ts", ".tsx"],
+  extensions: [".js", ".ts", ".tsx", ".mdx"],
   presets: [
     [
       r("@babel/preset-env"),
@@ -29,4 +29,11 @@ require("@babel/register")({
     ],
     "dynamic-import-node",
   ],
+});
+
+// necessary at any entry point of the cli to ensure that Babel-register
+// does not attempt to transform non JavaScript files.
+const ignoredExtensions = ["css", "mdx"];
+ignoredExtensions.forEach((ext) => {
+  require.extensions[`.${ext}`] = () => {};
 });

@@ -9,13 +9,14 @@ import createCache from "@emotion/cache";
 import { StaticRouter } from "react-router-dom";
 import App from "../../src/App";
 import { buildRoutes, baseBuildPath } from "./routesBuilder";
+import { Helmet } from "react-helmet";
 
 function buildTemplate() {
   const htmlFile = fs.readFileSync("./public/index.html", "utf-8");
   const { routePath } = buildRoutes();
 
   routePath.forEach((route) => {
-    const { html, constructedStyle, styleTags, linkTags, scriptTags } =
+    const { html, constructedStyle, styleTags, linkTags, scriptTags, title } =
       buildExtractorHTML(route);
 
     const buildHTMLPath = `${baseBuildPath}${route}/index.html`;
@@ -24,7 +25,8 @@ function buildTemplate() {
       .replace("%HTML_BODY%", html)
       .replace("%HTML_SCRIPTS%", scriptTags)
       .replace("%HTML_STYLES%", styleTags + constructedStyle)
-      .replace("%HTML_LINK%", linkTags);
+      .replace("%HTML_LINK%", linkTags)
+      .replace("%HTML_TITLE%", title);
 
     fs.writeFileSync(buildHTMLPath, replacedTemplate);
   });
@@ -53,11 +55,13 @@ function buildExtractorHTML(currentPath = "/") {
   const { styles, html } = extractCriticalToChunks(
     ReactDOMServer.renderToString(jsx)
   );
+  const helmet = Helmet.renderStatic();
   const constructedStyle = constructStyleTagsFromChunks({ html, styles });
 
   const scriptTags = extractor.getScriptTags();
   const linkTags = extractor.getLinkTags();
   const styleTags = extractor.getStyleTags();
+  const title = helmet.title.toString();
 
   return {
     html,
@@ -65,6 +69,7 @@ function buildExtractorHTML(currentPath = "/") {
     linkTags,
     styleTags,
     constructedStyle,
+    title,
   };
 }
 
@@ -75,7 +80,8 @@ function buildDevTemplate() {
     .replace("%HTML_BODY%", "")
     .replace("%HTML_SCRIPTS%", "")
     .replace("%HTML_STYLES%", "")
-    .replace("%HTML_LINK%", "");
+    .replace("%HTML_LINK%", "")
+    .replace("%HTML_TITLE%", "");
 
   return replacedTemplate;
 }

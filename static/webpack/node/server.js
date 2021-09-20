@@ -11,7 +11,7 @@ module.exports = {
     __dirname: true,
   },
   entry: getPathConfig("static/renderer/index.js"),
-  externals: [webpackNodeExternals()],
+  externals: [webpackNodeExternals(), "react-helmet"],
   module: {
     rules: [
       {

@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
-import routes from "../routes/app.route";
+import routes from "../routes/docs.route";
 
-function Routes() {
+function DocumentRoutes() {
   return (
     <Switch>
       {routes.map((val, idx) => {
@@ -11,4 +11,4 @@ function Routes() {
   );
 }
 
-export default Routes;
+export default DocumentRoutes;

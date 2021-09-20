@@ -1,10 +1,13 @@
 import fs from "fs";
-import routes from "../../src/routes";
+import appRoutes from "../../src/routes/app.route";
+import docsRoutes from "../../src/routes/docs.route";
 
 const baseBuildPath = "build";
 
 function getRoutes() {
-  return routes.map((val) => val.path);
+  return appRoutes
+    .map((val) => val.path)
+    .concat(docsRoutes.map((val) => val.path));
 }
 
 function buildRoutes() {

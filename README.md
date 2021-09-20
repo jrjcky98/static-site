@@ -9,7 +9,7 @@ Simple static website for React developers. Enhancing simple React apps by pre-r
 3. Critical CSS pre-rendering with @emotion/css.
 4. SPA navigation feel without full page reload with @loadable/components
 5. Build with Webpack.
-6. [WIP] SEO Support
+6. SEO Support
 7. Markdown Support (MDX)
 
 ## Development Insights
